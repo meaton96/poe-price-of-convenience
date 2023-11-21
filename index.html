@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+ 	<title>POE Price Compare</title>
+	
+ 	<link rel="stylesheet" href="css/poe_poc.css">
+
+    <script type="module" src="js/main.js"></script>
+	
+  
+</head>
+<body>
+<header>
+	<img src="images/logo.png" alt="my logo">
+	<h1>POE - Price of Convenience</h1>
+</header>
+<div id="mainContent">
+
+
+<main>
+<div id="navDiv">
+	<h2>Categories</h2>
+<nav id="navBar">
+	
+	<span data-type="beasts">
+		<img src="images/icon_beast.png" alt="beasts">
+		Beasts
+	</span>
+	<span data-type="breach">
+		<img src="images/icon_breach.png" alt="breach">
+		Breach
+	</span>
+	<span data-type="invitations">
+		<img src="images/icon_invitation.png" alt="invitations">
+		Invitations
+	</span>
+	<span data-type = "lifeforce">
+		<img src="images/icon_lifeforce.png" alt="lifeforce">
+		Lifeforce
+	</span>
+</nav>
+</div>
+
+
+
+
+
+<div id="results">
+<h2 id="resultsHeader">Results</h2>
+<div id="filter">
+<div id="searchBar">
+	<input type="text" id="searchInput" placeholder="Filter by name">
+
+</div>
+</div>
+<div id="column-headers">
+	<div id="leftHeader" class="sortable-header">TFT Price <span id="leftSortIndicator" class="sort-indicator">↓</span></div>
+	<div id="middleHeader" class="sortable-header">Comparison</div>
+	<div id="rightHeader" class="sortable-header">POE Trade Price <span id="rightSortIndicator" class="sort-indicator">↓</span></div>
+
+</div>
+
+
+<div id="resultsData">
+	
+<div id="leftData">
+	
+
+</div>
+<div id="middleData">
+	<div id="welcome-message">
+		<h2>Welcome to POE Price of Convenience</h2>
+		<p>
+			Contrary to how bulk sales work in the real world, in the action role-player game Path of Exile (POE), bulk sales are often more expensive than buying items individually.
+			This is because items are often sold in small quanities by players and are purchased and marked up by other players who then sell them in bulk.
+		</p>
+		<p>
+			This is the <em>Price of Convenience.</em> It is still often much better to purhase items in bulk to save time.
+		</p>
+		<p>
+			POE Price of Convenience is a tool that allows you to compare the price of buying items in bulk versus buying them individually.
+		</p>
+		<p>
+			Specifically this website will show the price difference between using the third party discord <em>The Forbidden Trove (TFT)</em> and the official POE trade website by pulling data from poe.ninja.
+			Find much more detailed currency and item price data at <a href="https://poe.ninja/">poe.ninja</a>.
+		</p>
+		<p>
+			Select a category on the left to get started. You can filter data by name and sort data by clicking a column header.
+		</p>
+		<div id="disclaimer">
+
+			<em>Disclaimer: This website currently only shows data for the current soft core league. After about a month into each league the data from 
+				TFT may be limited as they remove some items from their bulk shops. The data is also unlikely to change much during this time.
+			</em>
+		</div>
+	</div>
+	
+</div>
+
+<div id="rightData">
+	
+
+</div>
+
+</div>
+
+
+
+</div>
+</main>
+<footer>
+	<div id="footerInfo">
+	<p>
+		Created by <a href="https://www.linkedin.com/in/mike-eaton-b75491274/">Michael Eaton</a> &copy;2023
+		<br>
+		<a href="doc.html">Documentation</a>
+	</p>
+	
+	<p>
+		<em>Path of Exile is a registered trademark of Grinding Gear Games. <br>
+		This site is in no way affiliated with Path of Exile, Grinding Gear Games, poe.ninja, or The Forbidden Trove Discord server
+		</em>
+	</p>
+	
+	</div>
+</footer>
+</div>
+
+</body>
+</html>

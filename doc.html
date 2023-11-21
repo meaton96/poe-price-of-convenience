@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>POE POC Documentation</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" href="css/doc.css" />
+</head>
+<body>
+    <header id="header">
+
+        <h1>POE Price of Convience Documentation</h1>
+    </header>
+    <main>
+        <h2>Project Inspiration</h2>
+        <p>
+            I knew that there were many third party apps created for the game Path of Exile. Despite its small size, 
+            the game draws the kind of people who like to solve problems by creating tools. So, I knew that there was a way to pull
+            data from APIs as I use many of these tools myself. I was able to find .json data from bulk trading and from poe.ninja that I could use.
+            
+        </p>
+        <h2>Project Proposal</h2>
+        <p>
+            I wanted to create something that might actually be useful so I went ahead with the idea. It took me about 5 hours to get the basic API calls working but I figured
+            that would be the hard part.
+            <br>
+            I had to use a CORS proxy to get around the CORS issue. I used the CORS proxy from <a href="https://github.com/Rob--W/cors-anywhere">this repo</a>.
+            <br>
+            I was able to pull data from <a href="https://poe.ninja/">poe.ninja</a> using the CORS proxy and following a guide from the <a href="https://www.reddit.com/r/pathofexiledev/">POE Dev reddit</a>
+            on how to get the API urls.
+        </p>
+        <p>
+            Then I had to tackle the github API. I followed the guide <a href="https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28&tool=javascript">here</a> to get the API calls working.
+            This took a while trying to get all the async and fetch functions working. Since I was pulling data from a public repo I didn't need to use an access token or log in.
+            <br>
+            Also for some reason the github API would only return information on the repo so I had to grab the raw download url and make a second API call to get the actual data.
+            
+        </p>
+        <p>
+            Once I had the data displaying it was easy.
+        </p>
+
+        <h2>Project Process</h2>
+        <p>
+            I had the data I wanted to display and compare so I starteed with HTML and CSS to get the basic layout. I went back and forth between grid and flexbox trying to get 
+            my javascript to send code to a specific grid column didn't work so I ended up using flexbox for everything.
+        </p>
+        <p>
+            I, then, worked on the javascript to filter the data so I only had similar data entries to compare. Of course the data from each API was different so one was json.lines and one was json.data. 
+            So I had to code every function for two different data sources. 
+        </p>
+        <p>
+            I thought that comparing the data would be easy but turned out that the data from each source also had different variable names for the number I needed to fetch. It also turns out that the data from both sources
+            also changed. So sometimes the data from poe.ninja was 'chaosEquivalent' and sometimes it was 'chaosValue'. I had to code for both. Sometimes the data from the github repo was using shortened names so I had to hardcode
+            to account for that as well.
+        </p>
+
+        <p>
+            After all of that I was able to display the data on the site. I ended up using data for four different <em>types</em> of data. The data was split into categories in the repo and on poe.ninja.
+            Which brings me to...
+        </p>
+
+        
+
+        <h2>Additional Development</h2>
+        <p>
+            There is a signifigant amount of more data on the TFT bulk repo. The rest of the data would all require a new function or functions to be written to get and compare the correct information.
+            <br>For example: <br>
+            The data in the sets.json contains data for sets of items. I would need to get the value of the set, hard code for its name, then fetch data from the poe.ninja API for each item of that set.
+            I just did not have the time to implement this as I would have liked.
+        </p>
+        <p>
+            In the future I would like to:
+            <ul>
+                <li>Get the rest of the TFT bulk data and code for each item type to display more information on the site.</li>
+                <li>Add support for other leagues - currently data is only pulled from the 'league softcore' data folder. 
+                    This is the main way people play the game, but there are two other league types that I could display data for.</li>
+                <li>Potentially integrate this with the TFT discord in some way. Although they already have their own bulk selling tools, mine is more of just an information display</li>
+            </ul>
+        </p>
+
+        <h2>Project Requirements</h2>
+        <ul>
+            <li>Data pulled from 2 API sources</li>
+            <li>Data is displayed neatly on the webpage after being compared</li>
+            <li>A spinning progress bar is displayed while data is loading</li>
+            <li>Site is fully responsive from ~350px width to 4096px and works on mobile (if a little small)</li>
+            <li>The type of data the user was looking at is stored in local storage and is loaded on page load instead of the welcome message
+                <ul>
+                    <li>So if the user had the <em>beasts</em> tab open before, when they load the site that information will be displayed to them</li>
+                </ul>
+            </li>
+            <li>Data is also cached in the session storage when it is loaded. It will be loaded instead of an additional API call. This reduces API calls and improves user experience.
+                <ul>
+                    <li>One issue with this is that the data will always be read in over an API call so if the user has their browser open for a long time, the data will be out of date. At some point it should forcibly update if the data 
+                        in the session storage is too old. This has not been implemented</li>
+                </ul>
+            </li>
+            <li>HTML and CSS are fully valid with no javascript errors thrown</li>
+            <li>Controls</li>
+            <ul>
+                <li>API "searches" are done by clicking the navigation on the left. This pulls all of a specific data type.</li>
+                <li>Data can be filterd by name by typing in the bar at the top of the results</li>
+                <li>Data can be sorted using either poe.ninja data or the TFT data.</li>
+                <ul>
+                    <li>Sorting the data in one column will match the other column by name in order to display the information side by side</li>
+                </ul>
+            </ul>
+            <li>Other Potential Controls I did not have time to make</li>
+            <ul>
+                <li>A way to switch between standard and league information</li>
+                <ul>
+                    <li>I started making this and realized there was almost no data in the Standard folder in the TFT repo</li>
+                </ul>
+                <li>A dropdown to set a minimum chaos value to display so you don't see items below a certain value</li>
+            </ul>
+        </ul>
+        <h2>Attributes</h2>
+        <ul>
+            <li>All images were pulled from the Path of Exile CDN. Links to each image are available <a href="https://gist.github.com/sean-clayton/3757cf3512b9a555f447489811a946b7">here</a></li>
+            <li><a href="https://github.com/Rob--W/cors-anywhere">Cors Proxy</a></li>
+            <li><a href="https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28&tool=javascript">Github API Tutorial</a></li>
+            <li><a href="https://github.com/The-Forbidden-Trove/tft-data-prices">TFT github Repo</a></li>
+        </ul>
+        <h2>Grade</h2>
+        <h4>Hopefully close to 100 since this took me upwards of 40 hours mostly over 2 days from project ok to prototype due date</h4>
+        <ul>
+            <li>API 10/10</li>
+            <li>Local Storage 10/10</li>
+            <li>Controls 10/10 If all my controls count or 5/10 if I only have 2 (Filter/Sort/Search)</li>
+            <li>Error Free 10/10</li>
+            <li>Code 10/10</li>
+            <li>Semantic Structure 3/4 Don't really have an aside or sections since its just one section displaying everything, theres a footer I guess</li>
+            <li>Valid Html 4/4</li>
+            <li>Valid CSS 4/4</li>
+            <li>Visual Design 7/8</li>
+            <li>Interaction Design 6/8 - It is not super clear that you can sort by clicking on the column headers</li>
+            <li>Responsive Design 8/8</li>
+            <li>Checkpints 8/8 Everything was submitted on time</li>
+            <li>Documentation 6/6</li>
+        </ul>
+  
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var header = document.querySelector('#header');
+        header.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    });
+</script>
+</body>
+</html>
